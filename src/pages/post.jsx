@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 
-const Posts = () => {
+
+export default function Posts() {
     const { id } = useParams();
     useEffect(() => {
         async function fetchPosts() {
