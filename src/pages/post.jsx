@@ -1,14 +1,17 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 
 
-export default function Posts() {
+  const Posts = () => {
     const { id } = useParams();
+    const [posts, setPosts] = useState([])
+
+  
     useEffect(() => {
         async function fetchPosts() {
-    const { data } = await axios.get("https://jsonplaceholder.typicode.com/posts?userId=1")
-      console.log(data) 
+    const { data } = await axios.get(`https://jsonplaceholder.typicode.com/posts?userId=${id}`).data
+     setPosts(data);
       
       
 
@@ -17,7 +20,7 @@ export default function Posts() {
     }, [])
     return (
         <div>
-            {id}
+            {posts.map(post => <div>{post.id}</div>)}
         </div>
     )
 }
